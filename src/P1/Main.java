@@ -1,3 +1,4 @@
+package P1;
 import java.sql.*;
 
 public class Main {
@@ -7,17 +8,15 @@ public class Main {
         String pass = "root";
 
         Connection conn = DriverManager.getConnection(dbURL, user, pass);
-
         Statement statement = conn.createStatement();
-
-        ResultSet resultSet = statement.executeQuery("select * from reiziger");
-        ResultSetMetaData metadata = resultSet.getMetaData();
+        ResultSet rs = statement.executeQuery("select * from reiziger");
+        ResultSetMetaData metadata = rs.getMetaData();
         int columnCount = metadata.getColumnCount();
 
-        while (resultSet.next()) {
+        while (rs.next()) {
             String row = "";
             for (int i = 1; i <= columnCount; i++) {
-                row += resultSet.getString(i) + ", ";
+                row += rs.getString(i) + " ";
             }
             System.out.println(row);
         }
