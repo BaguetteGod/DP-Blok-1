@@ -18,7 +18,7 @@ public class Reiziger {
         this.geboortedatum = geboortedatum;
     }
 
-    private int getId() {
+    public int getId() {
         return this.id;
     }
 
@@ -30,7 +30,26 @@ public class Reiziger {
         return this.voorletters + this.tussenvoegsel + this.achternaam;
     }
 
+    public String getVoorletters() {
+        return this.voorletters;
+    }
+
+    public String getTussenvoegsel() {
+        return this.tussenvoegsel;
+    }
+
+    public String getAchternaam() {
+        return this.achternaam;
+    }
+
+    public Date getGeboortedatum() {
+        return this.geboortedatum;
+    }
+
     public String toString() {
         return "";
     }
+
+
+
 }
