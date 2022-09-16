@@ -7,18 +7,30 @@ public class Main {
         String user = "postgres";
         String pass = "root";
 
-        Connection conn = DriverManager.getConnection(dbURL, user, pass);
-        Statement statement = conn.createStatement();
-        ResultSet rs = statement.executeQuery("select * from reiziger");
-        ResultSetMetaData metadata = rs.getMetaData();
-        int columnCount = metadata.getColumnCount();
+        try {
+            Connection conn = DriverManager.getConnection(dbURL, user, pass);
+            Statement statement = conn.createStatement();
+            ResultSet rs = statement.executeQuery("select * from reiziger");
+            ResultSetMetaData metadata = rs.getMetaData();
+            int columnCount = metadata.getColumnCount();
 
-        while (rs.next()) {
-            String row = "";
-            for (int i = 1; i <= columnCount; i++) {
-                row += rs.getString(i) + " ";
+            while (rs.next()) {
+                String row = "";
+                for (int i = 1; i <= columnCount; i++) {
+                    row += rs.getString(i) + " ";
+                }
+                System.out.println(row);
             }
-            System.out.println(row);
+
+            conn.close();
+            statement.close();
+            rs.close();
+
+        } catch (SQLException se) {
+            se.printStackTrace();
+        } catch (Exception e) {
+//          Dit is zwaar onnodig :)
+            e.printStackTrace();
         }
     }
 }
