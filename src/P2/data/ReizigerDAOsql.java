@@ -70,7 +70,6 @@ public class ReizigerDAOsql implements ReizigerDAO {
                         rs.getString("achternaam"),
                         rs.getDate("geboortedatum"));
                 reizigerList.add(reiziger);
-                System.out.println(reiziger);
             }
             statement.close();
             rs.close();

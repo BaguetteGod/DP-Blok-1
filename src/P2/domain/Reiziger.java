@@ -26,10 +26,6 @@ public class Reiziger {
         this.id = id;
     }
 
-    private String getNaam() {
-        return this.voorletters + this.tussenvoegsel + this.achternaam;
-    }
-
     public String getVoorletters() {
         return this.voorletters;
     }
@@ -47,9 +43,7 @@ public class Reiziger {
     }
 
     public String toString() {
-        return "";
+        return  String.format("#%s %s. %s %s, %s", id, voorletters, tussenvoegsel, achternaam, geboortedatum);
     }
-
-
 
 }
