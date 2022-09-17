@@ -29,12 +29,8 @@ public class Main {
         } catch (SQLException se) {
             se.printStackTrace();
         } catch (Exception e) {
-//          Dit is zwaar onnodig :)
+            // Dit is zwaar onnodig :)
             e.printStackTrace();
         }
-
-        conn.close();
-        statement.close();
-        rs.close();
     }
 }

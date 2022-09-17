@@ -30,7 +30,7 @@ public class ReizigerDAOsql implements ReizigerDAO {
             se.printStackTrace();
             return false;
         } catch (Exception e) {
-//            Dit is zwaar onnodig :)
+            // Dit is zwaar onnodig :)
             e.printStackTrace();
             return false;
         }
@@ -38,22 +38,101 @@ public class ReizigerDAOsql implements ReizigerDAO {
 
     @Override
     public boolean update(Reiziger reiziger) {
-        return false;
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement("UPDATE reiziger SET voorletters = ?, tussenvoegsel = ?, achternaam = ?, geboortedatum = ? WHERE reiziger_id = ?");
+            preparedStatement.setString(1, reiziger.getVoorletters());
+            preparedStatement.setString(2, reiziger.getTussenvoegsel());
+            preparedStatement.setString(3, reiziger.getAchternaam());
+            preparedStatement.setDate(4, reiziger.getGeboortedatum());
+            preparedStatement.setInt(5, reiziger.getId());
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        } catch (Exception e) {
+            // Dit is zwaar onnodig :)
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @Override
     public boolean delete(Reiziger reiziger) {
-        return false;
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement("DELETE FROM reiziger where reiziger_id = ?");
+            preparedStatement.setInt(1, reiziger.getId());
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+
+            return true;
+        } catch (SQLException se) {
+            se.printStackTrace();
+            return false;
+        } catch (Exception e) {
+            // Dit is zwaar onnodig :)
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @Override
     public Reiziger findById(int id) {
-        return null;
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement("SELECT * from reiziger WHERE reiziger_id = ?");
+            preparedStatement.setInt(1, id);
+            ResultSet rs = preparedStatement.executeQuery();
+            Reiziger reiziger = null;
+            while (rs.next()) {
+                reiziger = new Reiziger(
+                        rs.getInt("reiziger_id"),
+                        rs.getString("voorletters"),
+                        rs.getString("tussenvoegsel"),
+                        rs.getString("achternaam"),
+                        rs.getDate("geboortedatum"));
+            }
+            preparedStatement.close();
+            rs.close();
+            return reiziger;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        } catch (Exception e) {
+            // Dit is zwaar onnodig :)
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override
-    public List<Reiziger> findByGbdatum(String datum) {
-        return null;
+    public List<Reiziger> findByGbdatum(String date) {
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement("SELECT * from reiziger WHERE geboortedatum = ?");
+            Date sqlDate = Date.valueOf(date);
+            preparedStatement.setDate(1, sqlDate);
+            ResultSet rs = preparedStatement.executeQuery();
+            List<Reiziger> reizigerList = new ArrayList<>();
+            while (rs.next()) {
+                Reiziger reiziger = new Reiziger(
+                        rs.getInt("reiziger_id"),
+                        rs.getString("voorletters"),
+                        rs.getString("tussenvoegsel"),
+                        rs.getString("achternaam"),
+                        rs.getDate("geboortedatum"));
+                reizigerList.add(reiziger);
+            }
+            preparedStatement.close();
+            rs.close();
+            return reizigerList;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        } catch (Exception e) {
+            // Dit is zwaar onnodig :)
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override
@@ -78,6 +157,7 @@ public class ReizigerDAOsql implements ReizigerDAO {
             se.printStackTrace();
             return null;
         } catch (Exception e) {
+            // Dit is zwaar onnodig :)
             e.printStackTrace();
             return null;
         }

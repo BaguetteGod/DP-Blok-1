@@ -29,6 +29,19 @@ public class Main {
         }
         System.out.println();
 
+        // Vind reiziger op ID
+        System.out.println("[Test] ReizigerDAO.findById(77) geeft de volgende reiziger:");
+        Reiziger reizigerToDelete = rdao.findById(77);
+        System.out.println(reizigerToDelete);
+        System.out.println();
+
+        // Delete een reiziger
+        System.out.print("[Test] Eerst " + reizigers.size() + " reizigers, na ReizigerDAO.delete() ");
+        rdao.delete(reizigerToDelete);
+        reizigers = rdao.findAll();
+        System.out.println(reizigers.size() + " reizigers");
+        System.out.println();
+
         // Maak een nieuwe reiziger aan en persisteer deze in de database
         String gbdatum = "1981-03-14";
         Reiziger sietske = new Reiziger(77, "S", "", "Boers", java.sql.Date.valueOf(gbdatum));
@@ -37,7 +50,13 @@ public class Main {
         reizigers = rdao.findAll();
         System.out.println(reizigers.size() + " reizigers\n");
 
-        // Voeg aanvullende tests van de ontbrekende CRUD-operaties in.
+        // Update een reiziger
+        String newGbdatum = "1981-05-15";
+        Reiziger reizigerToUpdate = new Reiziger(77, "F.K", "", "Saai", java.sql.Date.valueOf(newGbdatum));
+        System.out.print("[Test] Eerst was de data van de reiziger: \n" + rdao.findById(77));
+        rdao.update(reizigerToUpdate);
+        System.out.println("\nNu is de data van de reiziger: \n" + rdao.findById(77));
+
     }
     public static void main(String[] args) throws SQLException {
         Connection conn = getConnection();
