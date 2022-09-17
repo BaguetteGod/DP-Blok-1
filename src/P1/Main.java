@@ -20,5 +20,9 @@ public class Main {
             }
             System.out.println(row);
         }
+
+        conn.close();
+        statement.close();
+        rs.close();
     }
 }
