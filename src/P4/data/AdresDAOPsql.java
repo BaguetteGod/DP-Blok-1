@@ -1,7 +1,7 @@
-package P3.data;
+package P4.data;
 
-import P3.domain.Adres;
-import P3.domain.Reiziger;
+import P4.domain.Adres;
+import P4.domain.Reiziger;
 
 import java.sql.*;
 import java.util.ArrayList;

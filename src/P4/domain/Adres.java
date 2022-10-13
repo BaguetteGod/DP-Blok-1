@@ -1,4 +1,4 @@
-package P3.domain;
+package P4.domain;
 
 public class Adres {
     private int id;

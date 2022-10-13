@@ -1,4 +1,4 @@
-package P3.domain;
+package P4.domain;
 
 import java.sql.Date;
 import java.util.List;
@@ -11,6 +11,7 @@ public class Reiziger {
     private String achternaam;
     private Date geboortedatum;
     private Adres adres;
+    private List<OVChipkaart> ovChipkaartList;
 
     public Reiziger(int id, String voorletters, String tussenvoegsel, String achternaam, Date geboortedatum) {
         this.id = id;
@@ -21,12 +22,13 @@ public class Reiziger {
     }
 
     public Reiziger(int id, String voorletters, String tussenvoegsel, String achternaam, Date geboortedatum, Adres adres) {
-        this.id = id;
-        this.voorletters = voorletters;
-        this.tussenvoegsel = tussenvoegsel;
-        this.achternaam = achternaam;
-        this.geboortedatum = geboortedatum;
+        this(id, voorletters, tussenvoegsel, achternaam, geboortedatum);
         this.adres = adres;
+    }
+
+    public Reiziger(int id, String voorletters, String tussenvoegsel, String achternaam, Date geboortedatum, List<OVChipkaart> ovChipkaartList) {
+        this(id, voorletters, tussenvoegsel, achternaam, geboortedatum);
+        this.ovChipkaartList = ovChipkaartList;
     }
 
     public int getId() {
@@ -57,11 +59,4 @@ public class Reiziger {
         return  String.format("#%s %s. %s %s, %s. Met adres: %s", id, voorletters, tussenvoegsel, achternaam, geboortedatum, adres);
     }
 
-    public Adres getAdres() {
-        return  this.adres;
-    }
-
-    public void setAdres(Adres adres) {
-        this.adres = adres;
-    }
 }
