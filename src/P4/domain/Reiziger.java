@@ -59,4 +59,19 @@ public class Reiziger {
         return  String.format("#%s %s. %s %s, %s. Met adres: %s", id, voorletters, tussenvoegsel, achternaam, geboortedatum, adres);
     }
 
+    public List<OVChipkaart> getOvChipkaartList() {
+        return this.ovChipkaartList;
+    }
+
+    public Adres getAdres() {
+        return this.adres;
+    }
+
+    public void setAdres(Adres adres) {
+        this.adres = adres;
+    }
+
+    public void setOvChipkaartList(List<OVChipkaart> ovChipkaartList) {
+        this.ovChipkaartList = ovChipkaartList;
+    }
 }

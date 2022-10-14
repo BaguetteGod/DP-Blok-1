@@ -66,4 +66,15 @@ public class OVChipkaart {
     public void setId(int id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "OVChipkaart{" +
+                "id=" + id +
+                ", geldig_tot=" + geldigTot +
+                ", klasse=" + klasse +
+                ", saldo=" + saldo +
+                ", reiziger=" + reiziger +
+                '}';
+    }
 }
